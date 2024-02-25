@@ -1,30 +1,26 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Banner from './Components/Banner'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 import Header from './Components/Header'
 import { GlobalCss } from './styles'
-import ProductsList from './Components/ProductsList'
 
-const rotas = createBrowserRouter([
-  {
-    path: '/',
-    element: (
-      <>
-        <Banner />
-        <ProductsList title="Promoções" background="gray" />
-      </>
-    )
-  }
-])
+import Rotas from './routes'
+import Footer from './Components/Footer'
+import { store } from './Store'
+import Cart from './Components/Cart'
 
 function App() {
   return (
-    <>
-      <GlobalCss />
-      <div className="container">
-        <Header />
-      </div>
-      <RouterProvider router={rotas} />
-    </>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalCss />
+        <div className="container">
+          <Header />
+        </div>
+        <Rotas />
+        <Footer />
+        <Cart />
+      </BrowserRouter>
+    </Provider>
   )
 }
 
